@@ -22,9 +22,9 @@ import static in.jvapps.system_alert_window.utils.Constants.KEY_BODY;
 import static in.jvapps.system_alert_window.utils.Constants.KEY_FOOTER;
 import static in.jvapps.system_alert_window.utils.Constants.KEY_HEADER;
 
-public class BubbleActivity extends AppCompatActivity {
+public class AttentionSeekerActivity extends AppCompatActivity {
 
-    private  LinearLayout bubbleLayout;
+    private LinearLayout bubbleLayout;
     private HashMap<String, Object> paramsMap;
 
     private Context mContext;
@@ -33,7 +33,7 @@ public class BubbleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bubble);
+        setContentView(R.layout.attention_seeker_activity);
         mContext = this;
         bubbleLayout = findViewById(R.id.bubbleLayout);
         Intent intent = getIntent();
