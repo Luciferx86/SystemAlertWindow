@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AttentionSeekerActivity"
@@ -47,6 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/attentionMessage">
 
         <Button
+            android:id="@+id/dismissButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -54,6 +56,7 @@
             android:text="Dismiss" />
 
         <Button
+            android:id="@+id/viewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

@@ -1,7 +1,6 @@
 package in.jvapps.system_alert_window;
 
 import static in.jvapps.system_alert_window.services.WindowServiceNew.INTENT_EXTRA_IS_CLOSE_WINDOW;
-import static in.jvapps.system_alert_window.services.WindowServiceNew.INTENT_EXTRA_IS_UPDATE_WINDOW;
 import static in.jvapps.system_alert_window.utils.Constants.CHANNEL;
 import static in.jvapps.system_alert_window.utils.Constants.INTENT_EXTRA_PARAMS_MAP;
 
@@ -207,7 +206,6 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
                             i.putExtra(INTENT_EXTRA_PARAMS_MAP, params);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            i.putExtra(INTENT_EXTRA_IS_UPDATE_WINDOW, false);
                             //WindowService.enqueueWork(mContext, i);
                             mContext.startService(i);
                         } else {
@@ -244,7 +242,6 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
                             i.putExtra(INTENT_EXTRA_PARAMS_MAP, updateParams);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            i.putExtra(INTENT_EXTRA_IS_UPDATE_WINDOW, true);
                             //WindowService.enqueueWork(mContext, i);
                             mContext.startService(i);
                         } else {

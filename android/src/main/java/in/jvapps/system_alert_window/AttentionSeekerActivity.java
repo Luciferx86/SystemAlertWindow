@@ -2,26 +2,14 @@ package in.jvapps.system_alert_window;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.HashMap;
-import java.util.Map;
-
-import in.jvapps.system_alert_window.utils.Commons;
-import in.jvapps.system_alert_window.views.BodyView;
-import in.jvapps.system_alert_window.views.FooterView;
-import in.jvapps.system_alert_window.views.HeaderView;
 
 import static in.jvapps.system_alert_window.utils.Constants.INTENT_EXTRA_PARAMS_MAP;
-import static in.jvapps.system_alert_window.utils.Constants.KEY_BODY;
-import static in.jvapps.system_alert_window.utils.Constants.KEY_FOOTER;
-import static in.jvapps.system_alert_window.utils.Constants.KEY_HEADER;
 
 public class AttentionSeekerActivity extends AppCompatActivity {
 
