@@ -9,7 +9,7 @@
 
     <application>
         <activity
-            android:name=".BubbleActivity"
+            android:name=".AttentionSeekerActivity"
             android:documentLaunchMode="always"
             android:label="@string/bubbles_activity"
             android:allowEmbedded="true"
@@ -22,6 +22,9 @@
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.FOREGROUND_SERVICE"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

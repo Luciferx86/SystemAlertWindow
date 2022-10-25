@@ -202,12 +202,12 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
                     } else {
                         if (checkPermission(true)) {
                             LogUtils.getInstance().d(TAG, "Going to show System Alert Window");
-                            final Intent i = new Intent(mContext, WindowServiceNew.class);
+                            final Intent i = new Intent(mContext, AttentionSeekerActivity.class);
                             i.putExtra(INTENT_EXTRA_PARAMS_MAP, params);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             //WindowService.enqueueWork(mContext, i);
-                            mContext.startService(i);
+                            mContext.startActivity(i);
                         } else {
                             Toast.makeText(mContext, "Please give draw over other apps permission", Toast.LENGTH_LONG).show();
                             result.success(false);
