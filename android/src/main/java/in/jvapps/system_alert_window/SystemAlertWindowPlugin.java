@@ -184,9 +184,9 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
                     arguments = (JSONArray) call.arguments;
                     String title = (String) arguments.get(0);
                     String body = (String) arguments.get(1);
-                    JSONObject paramObj = (JSONObject) arguments.get(2);
+                    JSONObject extraData = (JSONObject) arguments.get(2);
                     @SuppressWarnings("unchecked")
-                    HashMap<String, Object> params = new Gson().fromJson(paramObj.toString(), HashMap.class);
+                    HashMap<String, Object> params = new Gson().fromJson(extraData.toString(), HashMap.class);
                     prefMode = (String) arguments.get(3);
                     if (prefMode == null) {
                         prefMode = "default";

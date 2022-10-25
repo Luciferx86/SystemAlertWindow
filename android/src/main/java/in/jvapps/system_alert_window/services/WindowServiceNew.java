@@ -1,5 +1,7 @@
 package in.jvapps.system_alert_window.services;
 
+import static in.jvapps.system_alert_window.utils.Constants.INTENT_EXTRA_PARAMS_MAP;
+
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,9 +18,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -37,6 +43,7 @@ public class WindowServiceNew extends Service {
 
     private WindowManager wm;
     private View inflatedView;
+    HashMap<String, Object> extraData;
 
     private Context mContext = this;
 
@@ -71,6 +78,7 @@ public class WindowServiceNew extends Service {
             @SuppressWarnings("unchecked")
             HashMap<String, Object> paramsMap = (HashMap<String, Object>) intent.getSerializableExtra(Constants.INTENT_EXTRA_PARAMS_MAP);
             boolean isCloseWindow = intent.getBooleanExtra(INTENT_EXTRA_IS_CLOSE_WINDOW, false);
+            extraData = (HashMap<String, Object>) intent.getSerializableExtra(INTENT_EXTRA_PARAMS_MAP);
             if (!isCloseWindow) {
                 assert paramsMap != null;
                 createWindow(paramsMap);
@@ -119,7 +127,6 @@ public class WindowServiceNew extends Service {
 
     @SuppressLint("ClickableViewAccessibility")
     private void setWindowView(WindowManager.LayoutParams params, boolean isCreate) {
-
         if (isCreate) {
             inflatedView = new View(mContext);
             inflatedView.setId(WINDOW_VIEW_ID);
@@ -129,12 +136,20 @@ public class WindowServiceNew extends Service {
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
-        inflatedView.findViewById(R.id.dismissButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeWindow(true);
-            }
-        });
+        inflatedView.findViewById(R.id.dismissButton).setOnClickListener(view -> closeWindow(true));
+        TextView attentionMessage = inflatedView.findViewById(R.id.attentionMessage);
+        ImageView profileImage = inflatedView.findViewById(R.id.profileImage);
+        String nickName = (String) extraData.get("nickName");
+        if (nickName != null && nickName.length() > 0) {
+            String message = nickName + " has requested attention";
+            attentionMessage.setText(message);
+        }
+        String imageUrl = (String) extraData.get("profileImageUrl");
+        if (imageUrl != null && imageUrl.length() > 0) {
+            Picasso.get()
+                    .load(imageUrl)
+                    .into(profileImage);
+        }
     }
 
     private void createWindow(HashMap<String, Object> paramsMap) {
@@ -170,6 +185,7 @@ public class WindowServiceNew extends Service {
                 if (inflatedView != null) {
                     wm.removeView(inflatedView);
                     inflatedView = null;
+                    extraData = null;
                 }
             }
             wm = null;

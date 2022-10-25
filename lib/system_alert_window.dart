@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -61,14 +62,20 @@ class SystemAlertWindow {
 
   static Future<bool?> showSystemWindow(
       {
-      SystemWindowBody? body,
       String notificationTitle = "Title",
       String notificationBody = "Body",
-      SystemWindowPrefMode prefMode = SystemWindowPrefMode.DEFAULT}) async {
-    final Map<String, dynamic> params = <String, dynamic>{
-      'body': body?.getMap(),
-    };
-    return await _channel.invokeMethod('showSystemWindow', [notificationTitle, notificationBody, params, Commons.getSystemWindowPrefMode(prefMode)]);
+    SystemWindowPrefMode prefMode = SystemWindowPrefMode.DEFAULT,
+    required Map<String, dynamic> extraData,
+  }) async {
+    return await _channel.invokeMethod(
+      'showSystemWindow',
+      [
+        notificationTitle,
+        notificationBody,
+        extraData,
+        Commons.getSystemWindowPrefMode(prefMode)
+      ],
+    );
   }
 
   static Future<bool?> closeSystemWindow({SystemWindowPrefMode prefMode = SystemWindowPrefMode.DEFAULT}) async {

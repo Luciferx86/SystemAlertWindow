@@ -115,7 +115,6 @@ class _MyAppState extends State<MyApp> {
         ],
       );
       SystemAlertWindow.showSystemWindow(
-        body: body,
         notificationTitle: "Incoming Call",
           notificationBody: "+1 646 980 4741",
         prefMode: prefMode,
