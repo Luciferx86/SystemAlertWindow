@@ -4,28 +4,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:system_alert_window/models/system_window_body.dart';
-import 'package:system_alert_window/models/system_window_footer.dart';
-import 'package:system_alert_window/models/system_window_header.dart';
-import 'package:system_alert_window/models/system_window_margin.dart';
 import 'package:system_alert_window/utils/commons.dart';
 import 'package:system_alert_window/utils/constants.dart';
 
 export 'models/system_window_body.dart';
-export 'models/system_window_button.dart';
-export 'models/system_window_decoration.dart';
-export 'models/system_window_footer.dart';
-export 'models/system_window_header.dart';
-export 'models/system_window_margin.dart';
-export 'models/system_window_padding.dart';
 export 'models/system_window_text.dart';
-
-enum SystemWindowGravity { TOP, BOTTOM, CENTER }
-
-enum ContentGravity { LEFT, RIGHT, CENTER }
-
-enum ButtonPosition { TRAILING, LEADING, CENTER }
-
-enum FontWeight { NORMAL, BOLD, ITALIC, BOLD_ITALIC }
 
 enum SystemWindowPrefMode { DEFAULT, OVERLAY, BUBBLE }
 
@@ -77,50 +60,15 @@ class SystemAlertWindow {
   }
 
   static Future<bool?> showSystemWindow(
-      {required SystemWindowHeader header,
+      {
       SystemWindowBody? body,
-      SystemWindowFooter? footer,
-      SystemWindowMargin? margin,
-      SystemWindowGravity gravity = SystemWindowGravity.CENTER,
-      int? width,
-      int? height,
       String notificationTitle = "Title",
       String notificationBody = "Body",
       SystemWindowPrefMode prefMode = SystemWindowPrefMode.DEFAULT}) async {
     final Map<String, dynamic> params = <String, dynamic>{
-      'header': header.getMap(),
       'body': body?.getMap(),
-      'footer': footer?.getMap(),
-      'margin': margin?.getMap(),
-      'gravity': Commons.getWindowGravity(gravity),
-      'width': width ?? Constants.MATCH_PARENT,
-      'height': height ?? Constants.WRAP_CONTENT
     };
     return await _channel.invokeMethod('showSystemWindow', [notificationTitle, notificationBody, params, Commons.getSystemWindowPrefMode(prefMode)]);
-  }
-
-  static Future<bool?> updateSystemWindow(
-      {required SystemWindowHeader header,
-      SystemWindowBody? body,
-      SystemWindowFooter? footer,
-      SystemWindowMargin? margin,
-      SystemWindowGravity gravity = SystemWindowGravity.CENTER,
-      int? width,
-      int? height,
-      String notificationTitle = "Title",
-      String notificationBody = "Body",
-      SystemWindowPrefMode prefMode = SystemWindowPrefMode.DEFAULT}) async {
-    final Map<String, dynamic> params = <String, dynamic>{
-      'header': header.getMap(),
-      'body': body?.getMap(),
-      'footer': footer?.getMap(),
-      'margin': margin?.getMap(),
-      'gravity': Commons.getWindowGravity(gravity),
-      'width': width ?? Constants.MATCH_PARENT,
-      'height': height ?? Constants.WRAP_CONTENT
-    };
-    return await _channel
-        .invokeMethod('updateSystemWindow', [notificationTitle, notificationBody, params, Commons.getSystemWindowPrefMode(prefMode)]);
   }
 
   static Future<bool?> closeSystemWindow({SystemWindowPrefMode prefMode = SystemWindowPrefMode.DEFAULT}) async {
