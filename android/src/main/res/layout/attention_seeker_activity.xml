@@ -13,21 +13,21 @@
         android:id="@+id/actionLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
+        android:gravity="left"
         app:layout_constraintBottom_toTopOf="@id/attentionAnimation"
-        app:layout_constraintTop_toBottomOf="@id/imageViewHolder">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewHolder"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/settingsButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/settings_white"
-            android:background="@android:color/transparent" />
+            android:src="@drawable/settings_white" />
     </LinearLayout>
 
     <ImageView
@@ -104,8 +104,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-
-            android:text="Dismiss" />
+            android:background="@drawable/button_bg"
+            android:text="Dismiss"
+            android:textColor="#CC525B" />
 
         <Button
             android:id="@+id/viewButton"
@@ -113,7 +114,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:text="View" />
+            android:background="@drawable/button_bg"
+            android:text="View"
+            
+            android:textColor="#CC525B" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
