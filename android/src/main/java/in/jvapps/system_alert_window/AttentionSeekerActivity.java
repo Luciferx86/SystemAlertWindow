@@ -2,6 +2,7 @@ package in.jvapps.system_alert_window;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,8 @@ public class AttentionSeekerActivity extends AppCompatActivity {
 
     void configureUI(HashMap<String, Object> paramsMap) {
         findViewById(R.id.dismissButton).setOnClickListener(view -> finish());
+        findViewById(R.id.viewButton).setOnClickListener(view -> viewRequest());
+        findViewById(R.id.settingsButton).setOnClickListener(view -> openSettings());
         TextView attentionMessage = findViewById(R.id.attentionMessage);
         ImageView profileImage = findViewById(R.id.profileImage);
         String nickName = (String) paramsMap.get("nickName");
@@ -51,19 +54,23 @@ public class AttentionSeekerActivity extends AppCompatActivity {
                     .load(imageUrl)
                     .into(profileImage);
         }
-//        Map<String, Object> headersMap = Commons.getMapFromObject(paramsMap, KEY_HEADER);
-//        Map<String, Object> bodyMap = Commons.getMapFromObject(paramsMap, KEY_BODY);
-//        Map<String, Object> footerMap = Commons.getMapFromObject(paramsMap, KEY_FOOTER);
-//        LinearLayout headerView = new HeaderView(mContext, headersMap).getView();
-//        LinearLayout bodyView = new BodyView(mContext, bodyMap).getView();
-//        LinearLayout footerView = new FooterView(mContext, footerMap).getView();
-//
-//        bubbleLayout.setBackgroundColor(Color.WHITE);
-//        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-//                FrameLayout.LayoutParams.WRAP_CONTENT);
-//        bubbleLayout.setLayoutParams(params);
-//        bubbleLayout.addView(headerView);
-//        bubbleLayout.addView(bodyView);
-//        bubbleLayout.addView(footerView);
+    }
+
+    void viewRequest(){
+        Intent intent = new Intent (Intent.ACTION_VIEW);
+        intent.setData (Uri.parse("icayal://icayal.com/updates"));
+        launchIntent(intent);
+        finish();
+    }
+
+    void openSettings(){
+        Intent intent = new Intent (Intent.ACTION_VIEW);
+        intent.setData (Uri.parse("icayal://icayal.com/settings"));
+        launchIntent(intent);
+        finish();
+    }
+
+    void launchIntent(Intent intent){
+        mContext.startActivity(intent);
     }
 }
