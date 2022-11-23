@@ -394,25 +394,22 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
         if (!isOverlay && (Commons.isForceAndroidBubble(mContext) || Build.VERSION.SDK_INT > Build.VERSION_CODES.Q)) {
             return NotificationHelper.getInstance(mContext).areBubblesAllowed();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(mContext)) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + mContext.getPackageName()));
-                if (mActivity == null) {
-                    if (mContext != null) {
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.startActivity(intent);
-                        Toast.makeText(mContext, "Please grant, Can Draw Over Other Apps permission.", Toast.LENGTH_SHORT).show();
-                        LogUtils.getInstance().e(TAG, "Can't detect the permission change, as the mActivity is null");
-                    } else {
-                        LogUtils.getInstance().e(TAG, "'Can Draw Over Other Apps' permission is not granted");
-                        Toast.makeText(mContext, "Can Draw Over Other Apps permission is required. Please grant it from the app settings", Toast.LENGTH_LONG).show();
-                    }
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + mContext.getPackageName()));
+            if (mActivity == null) {
+                if (mContext != null) {
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                    Toast.makeText(mContext, "Please grant, Can Draw Over Other Apps permission.", Toast.LENGTH_SHORT).show();
+                    LogUtils.getInstance().e(TAG, "Can't detect the permission change, as the mActivity is null");
                 } else {
-                    mActivity.startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+                    LogUtils.getInstance().e(TAG, "'Can Draw Over Other Apps' permission is not granted");
+                    Toast.makeText(mContext, "Can Draw Over Other Apps permission is required. Please grant it from the app settings", Toast.LENGTH_LONG).show();
                 }
             } else {
-                return true;
+                mActivity.startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
             }
+
         }
         return false;
     }

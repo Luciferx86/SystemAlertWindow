@@ -42,11 +42,16 @@ public class AttentionSeekerActivity extends AppCompatActivity {
         findViewById(R.id.viewButton).setOnClickListener(view -> viewRequest());
         findViewById(R.id.settingsButton).setOnClickListener(view -> openSettings());
         TextView attentionMessage = findViewById(R.id.attentionMessage);
+        TextView attentionReason = findViewById(R.id.attentionReason);
         ImageView profileImage = findViewById(R.id.profileImage);
         String nickName = (String) paramsMap.get("nickName");
+        String reason = (String) paramsMap.get("reason");
         if (nickName != null && nickName.length() > 0) {
             String message = nickName + " has requested attention";
             attentionMessage.setText(message);
+        }
+        if (reason != null && reason.length() > 0) {
+            attentionReason.setText(reason);
         }
         String imageUrl = (String) paramsMap.get("profileImageUrl");
         if (imageUrl != null && imageUrl.length() > 0) {

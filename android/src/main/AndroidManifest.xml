@@ -10,7 +10,7 @@
     <application>
         <activity
             android:name=".AttentionSeekerActivity"
-            android:documentLaunchMode="always"
+            android:launchMode="singleInstance"
             android:label="Icayal Attention"
             android:allowEmbedded="true"
             android:resizeableActivity="true"
