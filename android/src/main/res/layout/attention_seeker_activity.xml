@@ -121,7 +121,6 @@
             android:background="@drawable/button_bg"
             android:fontFamily="@font/montserrat"
             android:text="View"
-
             android:textColor="#CC525B" />
     </LinearLayout>
 
