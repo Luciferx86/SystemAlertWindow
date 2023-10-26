@@ -202,7 +202,7 @@ public class SystemAlertWindowPlugin extends Activity implements FlutterPlugin, 
                     } else {
                         if (checkPermission(true)) {
                             LogUtils.getInstance().d(TAG, "Going to show System Alert Window");
-                            final Intent i = new Intent(mContext, AttentionSeekerActivity.class);
+                            final Intent i = new Intent(mContext, EventRallyUpActivity.class);
                             i.putExtra(INTENT_EXTRA_PARAMS_MAP, params);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

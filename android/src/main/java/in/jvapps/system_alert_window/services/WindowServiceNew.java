@@ -131,18 +131,17 @@ public class WindowServiceNew extends Service {
             inflatedView = new View(mContext);
             inflatedView.setId(WINDOW_VIEW_ID);
         }
-        inflatedView = LayoutInflater.from(mContext).inflate(R.layout.attention_seeker_activity, null);
+        inflatedView = LayoutInflater.from(mContext).inflate(R.layout.event_rally_up_activity, null);
         inflatedView.setLayoutParams(     // THIS!
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
         inflatedView.findViewById(R.id.dismissButton).setOnClickListener(view -> closeWindow(true));
-        TextView attentionMessage = inflatedView.findViewById(R.id.attentionMessage);
+        TextView eventTitle = inflatedView.findViewById(R.id.title);
         ImageView profileImage = inflatedView.findViewById(R.id.profileImage);
-        String nickName = (String) extraData.get("nickName");
-        if (nickName != null && nickName.length() > 0) {
-            String message = nickName + " has requested attention";
-            attentionMessage.setText(message);
+        String title = (String) extraData.get("title");
+        if (title != null && title.length() > 0) {
+            eventTitle.setText(title);
         }
         String imageUrl = (String) extraData.get("profileImageUrl");
         if (imageUrl != null && imageUrl.length() > 0) {

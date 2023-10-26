@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import in.jvapps.system_alert_window.AttentionSeekerActivity;
+import in.jvapps.system_alert_window.EventRallyUpActivity;
 
 public class NotificationHelper {
     private static final String CHANNEL_ID = "bubble_notification_channel";
@@ -93,7 +93,7 @@ public class NotificationHelper {
                 .setIcon(icon)
                 .setLongLived(true)
                 .setCategories(categories)
-                .setIntent(new Intent(mContext.get(), AttentionSeekerActivity.class).setAction(Intent.ACTION_VIEW))
+                .setIntent(new Intent(mContext.get(), EventRallyUpActivity.class).setAction(Intent.ACTION_VIEW))
                 .setPerson(new Person.Builder()
                         .setName(SHORTCUT_LABEL)
                         .setIcon(icon)
@@ -129,7 +129,7 @@ public class NotificationHelper {
             updateShortcuts(icon);
         Person user = new Person.Builder().setName("You").build();
         Person person = new Person.Builder().setName(notificationTitle).setIcon(icon).build();
-        Intent bubbleIntent = new Intent(mContext.get(), AttentionSeekerActivity.class);
+        Intent bubbleIntent = new Intent(mContext.get(), EventRallyUpActivity.class);
         bubbleIntent.setAction(Intent.ACTION_VIEW);
         bubbleIntent.putExtra(INTENT_EXTRA_PARAMS_MAP, params);
         @SuppressLint("UnspecifiedImmutableFlag")

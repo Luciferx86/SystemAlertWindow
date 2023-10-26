@@ -9,9 +9,9 @@
 
     <application>
         <activity
-            android:name=".AttentionSeekerActivity"
+            android:name=".EventRallyUpActivity"
             android:launchMode="singleInstance"
-            android:label="Icayal Attention"
+            android:label="Rally Up"
             android:allowEmbedded="true"
             android:resizeableActivity="true"
             android:showOnLockScreen="true"
